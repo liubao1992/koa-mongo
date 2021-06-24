@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <div style="height: 500px;" id="canvas" />
     <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+    <script src="./qunee-min.js"></script>
     <script>
-        
+        $(function () {
+            var graph = new Q.Graph('canvas');
+
+            var hello = graph.createNode("Hello", -100, -50);
+            hello.image = "./images/OIP-C.jpg";
+            var qunee = graph.createNode("Qunee", 100, 50);
+            var edge = graph.createEdge("Hello\nQunee", hello, qunee);
+            edge.setStyle(Q.Styles.LABEL_OFFSET_Y, -10);
+            edge.setStyle(Q.Styles.LABEL_POSITION, Q.Position.CENTER_TOP);
+            edge.setStyle(Q.Styles.LABEL_ANCHOR_POSITION, Q.Position.CENTER_BOTTOM);
+            edge.setStyle(Q.Styles.LABEL_BORDER, 1);
+            edge.setStyle(Q.Styles.LABEL_POINTER, true);
+            edge.setStyle(Q.Styles.LABEL_PADDING, new Q.Insets(2, 5));
+            edge.setStyle(Q.Styles.LABEL_BACKGROUND_GRADIENT,
+                Q.Gradient.LINEAR_GRADIENT_VERTICAL);
+            $.ajax({
+                url: "http://10.28.5.43:3000/api/test/hello",
+                type: 'get',
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+        })
     </script>
 </body>
+
 </html>
