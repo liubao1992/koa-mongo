@@ -24,8 +24,8 @@ const client = new MongoClient(dbUrl, {
     useUnifiedTopology:true
 });
 const dbName = 'local'
-const tableName = 'users'
-
+// const tableName = 'users'
+const tableName = 'user'
 
 /**
  * @desc: 查询所有用户
